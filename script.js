@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-   const apiUrl = "/api/pair?phone=" + phoneNumber;
     const numberInput = document.getElementById('number');
     const pairBtn = document.getElementById('pairBtn');
     const qrBtn = document.getElementById('qrBtn');
     const result = document.getElementById('result');
+
+    // 🚨 FIX: Vercel വഴി സെർവറിലേക്ക് കണക്ട് ചെയ്യാനുള്ള ബേസ് URL
+    const API = "/api"; 
 
     if (pairBtn) {
         pairBtn.addEventListener('click', async () => {
@@ -13,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return result.innerHTML = '❌ Please enter a valid WhatsApp number.';
             }
 
-            result.innerHTML = '⏳ Generating Pair Code... Please wait (Server might be waking up)...';
+            result.innerHTML = '⏳ Generating Pair Code... Please wait...';
 
             try {
-                // ഇവിടെയാണ് ഒറിജിനൽ എഞ്ചിൻ വർക്ക് ആകുന്നത്!
+                // 🚨 FIX: നേരത്തെ നിർവ്വചിച്ച API വേരിയബിൾ ഇവിടെ ഉപയോഗിക്കുന്നു
                 const res = await fetch(`${API}/pair?phone=${num}`);
                 const data = await res.json();
 
@@ -42,14 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
         qrBtn.addEventListener('click', () => {
             result.innerHTML = '⏳ Loading QR Code... Please wait...';
             
-            // QR കോഡ് Render ബാക്ക്-എൻഡിൽ നിന്നും ഇമേജ് ആയി ലോഡ് ചെയ്യുന്നു
+            // 🚨 FIX: QR കോഡിനും API വേരിയബിൾ ഉപയോഗിക്കുന്നു
             setTimeout(() => {
                 result.innerHTML = `
                     📱 Scan this QR Code in WhatsApp:<br><br>
                     <img src="${API}/qr" alt="QR Code" style="width: 220px; border-radius: 10px; margin-top: 15px; background: white; padding: 10px; box-shadow: 0px 0px 15px rgba(255,255,255,0.2);" />
                     <br><br><small>Scan within 20 seconds. Click again to reload if expired.</small>
                 `;
-            }, 500); // UI ഗ്ലിച്ച് ഒഴിവാക്കാൻ ഒരു ചെറിയ ഡിലേ
+            }, 500); 
         });
     }
 });
