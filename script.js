@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API = "https://kira-session-generator-api.onrender.com";
+    const API = "https://kiraxmd-kira-session-api.hf.space";
     const numberInput = document.getElementById('number');
     const pairBtn = document.getElementById('pairBtn');
     const qrBtn = document.getElementById('qrBtn');
