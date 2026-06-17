@@ -1,0 +1,29 @@
+body{
+background:#0f172a;
+color:white;
+font-family:sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+}
+
+button{
+padding:15px 30px;
+margin:10px;
+border:none;
+border-radius:15px;
+cursor:pointer;
+font-size:18px;
+}
+
+h1{
+animation: glow 2s infinite;
+}
+
+@keyframes glow{
+50%{
+text-shadow:0 0 20px cyan;
+}
+}
