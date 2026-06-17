@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API = "https://kiraxmd-kira-session-api-v2.hf.space";
+    const API = "http://de29.spaceify.eu:25585";
     const numberInput = document.getElementById('number');
     const pairBtn = document.getElementById('pairBtn');
     const qrBtn = document.getElementById('qrBtn');
