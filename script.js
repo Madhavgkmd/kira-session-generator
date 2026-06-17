@@ -1,5 +1,5 @@
 const API =
-"https://your-railway-url.up.railway.app";
+"https://kira-session-generator-api.onrender.com";
 
 const result =
 document.getElementById("result");
@@ -8,109 +8,50 @@ document
 .getElementById("pairBtn")
 .onclick = async () => {
 
-result.innerHTML =
-"⏳ Generating Pair Code...";
+    const number =
+    document
+    .getElementById("number")
+    .value
+    .trim();
 
-try{
+    if(!number){
+        result.innerHTML =
+        "❌ Enter a phone number";
+        return;
+    }
 
-const res =
-await fetch(`${API}/pair`);
+    result.innerHTML =
+    "⏳ Generating Pair Code...";
 
-const data =
-await res.json();
+    try{
 
-result.innerHTML = `
-<h3>🔑 Pair Code</h3>
-<br>
-<b>${data.code}</b>
-`;
+        const res =
+        await fetch(
+            `${API}/pair`,
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":
+                    "application/json"
+                },
+                body:JSON.stringify({
+                    number
+                })
+            }
+        );
 
-}catch{
+        const data =
+        await res.json();
 
-result.innerHTML =
-"❌ Failed to generate pair code";
+        result.innerHTML =
+        `
+        🔑 Pair Code:<br><br>
+        <b>${data.code}</b>
+        `;
 
-}
+    }catch{
 
+        result.innerHTML =
+        "❌ Failed";
+    }
 };
-
-document
-.getElementById("qrBtn")
-.onclick = async () => {
-
-result.innerHTML =
-"⏳ Generating QR...";
-
-try{
-
-const res =
-await fetch(`${API}/qr`);
-
-const data =
-await res.json();
-
-result.innerHTML = `
-<img
-src="${data.qr}"
-width="250"
-style="border-radius:15px;"
->
-`;
-
-}catch{
-
-result.innerHTML =
-"❌ Failed to generate QR";
-
-}
-
-};
-
-const cursor =
-document.querySelector(".cursor");
-
-document.addEventListener(
-"mousemove",
-(e)=>{
-
-cursor.style.left =
-e.clientX + "px";
-
-cursor.style.top =
-e.clientY + "px";
-
-}
-);
-
-particlesJS("particles-js",{
-
-particles:{
-
-number:{
-value:70
-},
-
-color:{
-value:"#9333ea"
-},
-
-shape:{
-type:"circle"
-},
-
-opacity:{
-value:0.4
-},
-
-size:{
-value:3
-},
-
-move:{
-enable:true,
-speed:1
-}
-
-}
-
-});
