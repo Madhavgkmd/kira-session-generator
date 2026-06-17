@@ -1,0 +1,8 @@
+module.exports = {
+  rewrites: [
+    {
+      source: "/api/:path*",
+      destination: "http://de29.spaceify.eu:25585/:path*"
+    }
+  ]
+};

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API = "http://de29.spaceify.eu:25585";
+   const apiUrl = "/api/pair?phone=" + phoneNumber;
     const numberInput = document.getElementById('number');
     const pairBtn = document.getElementById('pairBtn');
     const qrBtn = document.getElementById('qrBtn');
